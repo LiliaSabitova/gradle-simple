@@ -8,6 +8,20 @@ trigger: none
 pool: Default
 
 steps:
+- task: Gradle@3
+  inputs:
+    workingDirectory: ''
+    gradleWrapperFile: 'gradlew'
+    gradleOptions: '-Xmx3072m'
+    tasks: 'build'
+    publishJUnitResults: true
+    testResultsFiles: '**/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.8'
+    jdkArchitectureOption: 'x64'
+    sonarQubeRunAnalysis: false
+    spotBugsAnalysis: false
+
 - task: Gradle@2
   inputs:
     workingDirectory: ''
